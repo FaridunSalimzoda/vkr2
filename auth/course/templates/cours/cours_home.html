@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Курсы
+{% endblock %}
+
+
+
+{% block content %}
+<div class="menu_gl">
+	<ul class="menu">
+		<li><a class="cours_menu_a" href="{% url 'kurs' %}">Все курсы</a></li>
+		<li><a href="{% url 'mycours' %}">Мои курсы</a></li>
+		<li><a href="{% url 'adk' %}">Добавить курс</a></li>
+			</ul>
+</div>
+
+{% if ku%}
+{% for el in ku %}
+
+<table class="tftable">
+	<tr>
+		<th class="p-2 text-dark">Название курса</th>
+		<th class="p-2 text-dark">Описание курса</th>
+		<th class="p-2 text-dark">Преподаватель</th>
+		<th class="p-2 text-dark">Ссылка</th>
+
+	</tr>
+	<tr>
+		<td class="p-2 text-dark">{{ el.title }}</td>
+		<td class="p-2 text-dark">{{ el.task }}</td>
+		<td class="p-2 text-dark">{{ el.teacher }}</td>
+		<td class="p-2 text-dark"><a href="{% url 'datail' el.id %}">Перейти</a></td>
+	</tr>
+</table>
+{%endfor%}
+{% else %}
+<p>Вы не добавили курсов</p>
+{%endif%}
+{% endblock %}

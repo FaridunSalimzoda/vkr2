@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ top.title }}
+{% endblock %}
+
+
+
+{% block content %}
+<h1>{{ top.title }}</h1>
+
+<div>
+	<ul class="menu">
+		<li><a href="{% url 'topic_update' kk 1 %}">Изменить тему</a></li>
+        <li><a href="{% url 'topic_delete' kk 1 %}">Удалить тему</a></li>
+        <li><a href="{% url 'addtest'%}">Добавить тест</a></li>
+	</ul>
+</div>
+
+
+
+
+<div class="co">
+        {% if top %}
+
+   <div class="kurs">
+       <h3>{{ top.title }}</h3>
+       <h3>{{ top.task }}</h3>
+   </div>
+
+
+   {% else %}
+   <p>Нет содержимого</p>
+   {%endif%}
+   {% endblock %}

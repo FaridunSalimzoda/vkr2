@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
+
+
+
+{% block content %}
+<h1>Название курса: {{ post.title }}</h1>
+<p>Описание курса: {{ post.task }}</p>
+<p>Преподаватель: {{ post.teacher }}</p>
+<div class="menu_gl">
+	<ul class="menu">
+		<li><a href="{% url 'delete' pk %}">Удалить курс</a></li>
+		<li><a href="{% url 'update' pk %}">Изменить курс</a></li>
+		<li><a href="{% url 'newtopic' pk %}">Добавить тему</a></li>
+	</ul>
+</div>
+
+
+
+
+<div class="co">
+      {% if top %}
+    {% for el in top %}
+
+		<table class="tftable">
+			<tr>
+				<th class="p-2 text-dark">Название темы</th>
+				<th class="p-2 text-dark">Описание темы</th>
+				<th class="p-2 text-dark">Ссылка</th>
+		
+			</tr>
+			<tr>
+				<td class="p-2 text-dark">{{ el.title }}</td>
+				<td class="p-2 text-dark">{{ el.task }}</td>
+				<td class="p-2 text-dark"><a href="{% url 'top_datail' pk el.id %}">Перейти</a></td>
+			</tr>
+		</table>
+{%endfor%}
+   {% else %}
+   <p>Вы не добавили темы</p>
+   {%endif%}
+   {% endblock %}
+
+</div>

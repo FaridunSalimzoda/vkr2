@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Курсы
+{% endblock %}
+
+
+
+{% block content %}
+<div class="menu_gl">
+	<ul class="menu">
+		<li><a class="cours_menu_a" href="#">Все курсы</a></li>
+		<li><a href="{% url 'mycours' %}">Мои курсы</a></li>
+	</ul>
+</div>
+
+{% if ku%}
+{% for el in ku %}
+<table>
+
+	<tr>
+
+		<table class="iksweb">
+			<tbody>
+				<tr>
+					<td class="table_na">Название курса</td>
+					<td class="table_na">Описание курса</td>
+					<td class="table_na">Преподаватель</td>
+					<td class="table_na">Ссылка</td>
+					<td class="table_na">Записаться на курс</td>
+				</tr>
+				<tr>
+					<td class="table_na">{{ el.title }}</td>
+					<td class="table_na">{{ el.task }}</td>
+					<td class="table_na">{{ el.teache }}</td>
+					<td class="table_na">
+					<td class="btn btn-success"><a href="{% url 'datail' el.id %}">Перейти</a></button></td>
+					<td class="btn btn-success"><a href="{% url 'record'%}">Запись</a></button></td>
+				</tr>
+			</tbody>
+		</table>
+	</tr>
+</table>
+
+{%endfor%}
+{% else %}
+<p>Вы не добавили курсов</p>
+{%endif%}
+{% endblock %}
