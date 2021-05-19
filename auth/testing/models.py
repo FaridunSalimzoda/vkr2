@@ -14,7 +14,7 @@ from .signals import csv_uploaded
 from .validators import csv_file_validator
 from django.contrib.auth.models import User
 from django.contrib import messages
-from auth.course.models import CourseTable, TopicTable
+from course.models import CourseTable, TopicTable
 
 
 
@@ -142,10 +142,10 @@ class ProgressManager(models.Manager):
 
 class Progress(models.Model):
     """
-    Progress is used to track an individual signed in users score on different
-    quiz's and categories
-    Data stored in csv using the format:
-        category, score, possible, category, score, possible, ...
+    Прогресс используется для отслеживания оценки отдельных пользователей, вошедших в систему, на разных
+    викторины и категории
+    Данные, хранящиеся в формате csv с использованием формата:
+        категория, оценка, возможно, категория, оценка, возможно,...
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_("Пользователь"), on_delete=models.CASCADE)
 

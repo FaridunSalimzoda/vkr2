@@ -1,17 +1,12 @@
-import random
 from django import forms
 from django.forms.widgets import RadioSelect
 from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput
-from django.contrib.auth.decorators import login_required, permission_required
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, render
-from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView, TemplateView
-from django.views.generic.edit import FormView
-from .forms import QuestionForm, QuizForm, QuestionsFormmy, RegistrForm
-from .models import Quiz, Progress, Sitting, Question
-from django.shortcuts import render, redirect
-
+from  .models import Quiz
+from quiz.models import Question
+from mcq.models import MCQQuestion
+from django.contrib.auth.models import User
+from model_utils.managers import InheritanceManager
+from django.contrib.admin.widgets import FilteredSelectMultiple
 
 class QuestionForm(forms.Form):
     def __init__(self, question, *args, **kwargs):
@@ -59,7 +54,7 @@ class QuizForm(ModelForm):
 
 class  QuestionsFormmy(ModelForm):
     class Meta:
-        model =
+        model = MCQQuestion
         fields = ['category', 'content', 'explanation']
         widgets = {
             # здесь может быть поле для выбора теста, в который должен попавсть вопрос
@@ -84,6 +79,14 @@ class  QuestionsFormmy(ModelForm):
 
         }
 
+class RegistrForm(ModelForm):
+    class Meta:
+        model: User
+        fields = ['username', 'password']
+        widgets = {
+            'username': TextInput({}),
+            'password': PasswordInput({})
+        }
 # class MCQQuestForm(ModelForm):
 #     class Meta:
 #         model =
