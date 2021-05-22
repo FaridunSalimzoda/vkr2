@@ -8,15 +8,15 @@ from django.utils.translation import ugettext_lazy as _
 from .models import CSVUpload
 
 # вот так сюда можно подключить курсы, но пока это не используется
-from cours.models import CourseTable
+from course.models import CourseTable
 
 
 class CSVUploadsAdmin(admin.ModelAdmin):
     model = CSVUpload
     list_display= ('title',)
 
-class AnswerInline(admin.TabularInline):
-    model = Answer
+#class AnswerInline(admin.TabularInline):
+ #   model = Answer
 
 
 class QuizAdminForm(forms.ModelForm):
@@ -74,7 +74,7 @@ class MCQuestionAdmin(admin.ModelAdmin):
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
 
-    inlines = [AnswerInline]
+#    inlines = [AnswerInline]
 
 
 class ProgressAdmin(admin.ModelAdmin):
@@ -86,6 +86,6 @@ class ProgressAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Quiz, QuizAdmin)
-admin.site.register(MCQQuestion, MCQuestionAdmin)
+#admin.site.register(MCQQuestion, MCQuestionAdmin)
 admin.site.register(Progress, ProgressAdmin)
 admin.site.register(CSVUpload, CSVUploadsAdmin)

@@ -1,7 +1,7 @@
 from urllib import request
 from django.db import models
 from users.models import user
-from testing.models import imprt
+
 User_table = user
 
 class CourseTable(models.Model):
