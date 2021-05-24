@@ -12,9 +12,13 @@ from django.views.generic.edit import FormView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-def index(request):
 
+def index(request):
     return render(request, 'main/index.html')
+
+def account(request):
+
+    return render(request, 'main/account.html')
 
 
 def login_user(request):

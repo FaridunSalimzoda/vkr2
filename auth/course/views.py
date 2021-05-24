@@ -16,7 +16,7 @@ def user_cours(request):
 def detail(request, pk):
     ku = list(CourseTable.objects.filter(id=pk).values())
     top = TopicTable.objects.filter(id_course=pk)
-    user = auth.get_user(request).username
+    user = auth.get_user(request)
     return render(request, 'cours/datail.html', {'post': ku[0], 'top': top, 'pk': pk})
 
 def topic_dateil(request, pk, kk):

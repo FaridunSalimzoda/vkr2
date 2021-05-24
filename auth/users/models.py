@@ -34,12 +34,12 @@ class user(AbstractBaseUser, PermissionsMixin):
         max_length= 255,
         unique=True
     )
-    is_active = models.BooleanField('Активированная',default=True)
+    is_active = models.BooleanField('Активированная')
     is_admin = models.BooleanField('Администратор',default=False)
     is_teacher = models.BooleanField('Преподаватель',default=False)
     is_students = models.BooleanField('Студент',default=True)
-    name = models.TextField('Имя',max_length=255, default='name')
-    last_name = models.TextField('Фамилия',max_length=255, default='lastname')
+    name = models.TextField('Имя',max_length=255, default=False)
+    last_name = models.TextField('Фамилия',max_length=255, default=False)
     patronymic = models.TextField('Отчество',max_length=255, default='patronymic')
     students_groups = models.TextField('Группа',max_length=10, default='group')
 

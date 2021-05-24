@@ -14,8 +14,7 @@ from django.shortcuts import render, redirect
 from course.models import CourseTable, TopicTable
 
 
-def  lk (request):
-    return render(request, 'main/index.html')
+
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
     @method_decorator(permission_required('quiz.view_sittings'))
@@ -35,7 +34,7 @@ class SittingFilterTitleMixin(object):
 
 class QuizListView(ListView):
     model = Quiz
-
+    template_name = 'quiz/quiz_list.html'
     # @login_required
     def get_queryset(self):
         queryset = super(QuizListView, self).get_queryset()
