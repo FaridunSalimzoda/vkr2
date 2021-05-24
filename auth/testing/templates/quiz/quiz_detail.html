@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% block title %}
+{{ quiz.title }}
+{% endblock %}
+
+{% block content %}
+<div class="menu_gl">
+	<ul class="menu">
+	   <ul class="navbar-nav rm-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-tem" style="color:gray">
+          <a href="{% url 'quiz_index' %}" class="nav-link">Тесты</a>
+        </li>
+        <li class="nav-tem" style="color:gray">
+            <a href="{% url 'quiz_progress' %}" class="nav-link">Прогресс</a>
+          </li>
+        <li class="nav-tem" style="color:gray">
+            <a href="{% url 'add_answer' %}" class="nav-link">Добавить вопрос</a>
+          </li>
+        {% endif %}
+    </ul>
+      </ul>
+</div>
+<h2>{{ quiz.title }}</h2>
+<h3>{% trans "Курс" %}: {{ quiz.category }}</h3>
+{% if quiz.single_attempt %}
+  <h4>{% trans "You will only get one attempt at this quiz" %}.</h4>
+{% endif %}
+<p>{{ quiz.description }}</p>
+<p>
+  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+	{% trans "Пройти тест" %}
+  </a>
+</p>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Добавить тест
+{% endblock %}
+
+{% block content %}
+<div>
+	<ul class="menu">
+		<li><a href="{% url 'quiz_index' %}">Все тесты</a></li>
+		<li><a href="#">Мои тесты</a></li>
+		<li><a href="{% url 'add_test' %}">Добавить тест</a></li>
+	</ul>
+</div>
+
+<form method="post">
+	{% csrf_token %}
+  <p> Название теста : {{ form.title  }}<br> </p>
+  <p>Описание теста: {{ form.description }}<br> </p>
+  <p>Курс: {{ form.category  }}<br> </p>
+  <p>Ввыодить вопросы разноброс: {{ form.random_order }}<br> </p>
+  <p>Максимально вопросов: {{ form.max_questions }}<br> </p>
+  <p>Выводить ответы в конце: {{ form.answers_at_end }} </p> <br>
+  <p>Экзамен: {{ form.exam_paper }}<br> </p>
+    <p>Ссылка на тест: {{ form.url }}</p>
+  <p>Пользователю будет разрешена только одна попытка: {{ form.single_attempt }}<br> </p>
+  <p>Миниальный процентр прохождение теста: {{ form.pass_mark }}<br> </p>
+  <p>Текст при неправильном прохождении: {{ form.success_text }}<br> </p>
+   <p>Текст при правильном прохождении: {{ form.fail_text }}<br> </p>
+   <p>Проект:  {{ form.draft }}<br> </p>
+    {{ form.MCQQuestion}}
+
+
+    <button type="submit" class="btn btn-success">Добавить тест</button>
+	<span>{{ error }}</span>
+</form>
+{% endblock %}

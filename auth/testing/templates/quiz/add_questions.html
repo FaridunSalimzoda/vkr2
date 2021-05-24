@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Добавить вопрос
+{% endblock %}
+
+{% block content %}
+<div>
+    <ul class="menu">
+        <li><a href="{% url 'quiz_index' %}">Все тесты</a></li>
+        <li><a href="#">Мои тесты</a></li>
+        <li><a href="{% url 'add_test' %}">Добавить тест</a></li>
+    </ul>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+   <p> Курс: {{ form.category }}<br></p>
+  <p> Вопрос: {{ form.content }}<br></p>
+  <p>Объяснение:  {{ form.explanation }}<br></p>
+  <p>{{ form.objects }}</p>
+
+
+    <button type="submit" class="btn btn-success">Добавить вопрос</button>
+    <span>{{ error }}</span>
+</form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load quiz_tags %}
+{% block title %}{% trans "Тест" %}{% endblock %}
+
+{% block content %}
+<div class="menu_gl">
+	<ul class="menu">
+		<li><a class="cours_menu_a" href="#">Все тесты</a></li>
+		<li><a href="#">Мои тесты</a></li>
+		<li><a href="{% url 'add_test' %}">Добавить тест</a></li>
+			</ul>
+</div>
+<h2>{% trans "Тест" %}</h2>
+    {% if quiz_list %}
+		<table class="table table-bordered table-striped">
+
+		  <thead>
+			<tr>
+			  <th>{% trans "Title" %}</th>
+			  <th>{% trans "Category" %}</th>
+			  <th>{% trans "Exam" %}</th>
+			  <th>{% trans "Single attempt" %}</th>
+			  <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
+        {% for quiz in quiz_list %}
+
+  			<tr>
+			  <td>{{ quiz.title }}</td>
+			  <td>{{ quiz.category }}</td>
+			  <td>{{ quiz.exam_paper }}</td>
+			  <td>{{ quiz.single_attempt }}</td>
+			  <td>
+				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				  {% trans "View details" %}
+				</a>
+			</tr>
+
+        {% endfor %}
+		  </tbody>
+
+		</table>
+
+	{% else %}
+        <p>{% trans "Нет доступных тестов" %}.</p>
+    {% endif %}
+{% endblock %}

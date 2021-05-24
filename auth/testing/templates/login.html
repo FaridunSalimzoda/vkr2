@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+ {% block content %}
+
+<div class="form_login">
+    <h1 class="text-center">Авторизация</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Введите логин" name="username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Введите пароль" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+        <p> <a href="{% url 'add_user' %}">Еще не зарегистрирован?</a></p>
+    </form>
+</div>
+
+{% endblock %}

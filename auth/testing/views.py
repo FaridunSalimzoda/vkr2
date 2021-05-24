@@ -8,13 +8,14 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
-from .forms import QuestionForm, QuizForm, QuestionsFormmy, RegistrForm
+from .forms import QuestionForm, QuizForm, RegistrForm
 from .models import Quiz, Progress, Sitting, Question
 from django.shortcuts import render, redirect
 from course.models import CourseTable, TopicTable
 
 
-
+def  lk (request):
+    return render(request, 'main/index.html')
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
     @method_decorator(permission_required('quiz.view_sittings'))

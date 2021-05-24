@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+ {% block content %}
+
+<div class="form_login">
+    <h1 class="text-center">Авторизация</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{form.username}}
+        </div>
+        <div class="form-group">
+           {{form.password}}
+        </div>
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+</div>
+
+{% endblock %}
