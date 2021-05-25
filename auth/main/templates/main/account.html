@@ -17,8 +17,8 @@
 </div>
 <h1>Личный кабинет</h1>
 {% if user.is_authenticated %}
-    <p>Логин: {{user.username}}</p>
-    <p>Имя Фамилия: {{user.first_name}} {{user.last_name}}</p>
+    <p>Логин: {{user.email}}</p>
+    <p>Имя Фамилия: {{user.name}} {{user.last_name}}</p>
     <p>Email: {{user.email}}</p>
 {% endif %}
 

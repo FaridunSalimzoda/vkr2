@@ -321,7 +321,7 @@ width: 180px;
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 2px 0px;
     text-decoration: none;
     display: block;
 }
