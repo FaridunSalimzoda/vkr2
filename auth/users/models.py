@@ -34,7 +34,7 @@ class user(AbstractBaseUser, PermissionsMixin):
         max_length= 255,
         unique=True
     )
-    is_active = models.BooleanField('Активированная')
+    is_active = models.BooleanField('Активированная', default=True)
     is_admin = models.BooleanField('Администратор',default=False)
     is_teacher = models.BooleanField('Преподаватель',default=False)
     is_students = models.BooleanField('Студент',default=True)
