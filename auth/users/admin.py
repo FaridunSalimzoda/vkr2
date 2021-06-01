@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm
 from django.core.exceptions import ValidationError
 from .models import user
 
@@ -27,23 +27,24 @@ class UserCreationForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        # user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
         return user
 
-    class UserChangeForm(forms.ModelForm):
-        """A form for updating users. Includes all the fields on
-        the user, but replaces the password field with admin's
-        password hash display field.
-        """
-        password = ReadOnlyPasswordHashField()
-
-        class Meta:
-            model = user
-            fields = ('email', 'password', )
-        def clean_password(self):
-            return self.initial["password"]
+class UserChangeForm(UserChangeForm):
+    """A form for updating users. Includes all the fields on
+    the user, but replaces the password field with admin's
+    password hash display field.
+    """
+    # password = ReadOnlyPasswordHashField()
+    print(UserChangeForm)
+    class Meta:
+        model = user
+        fields = ('email', 'name','last_name','patronymic',
+                    'is_admin', 'is_teacher', 'is_students','students_groups' )
+    # def clean_password(self):
+    #     return self.initial["password"]
 
 class UserAdmin(BaseUserAdmin):
         form = UserCreationForm

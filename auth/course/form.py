@@ -1,4 +1,4 @@
-from .models import CourseTable,TopicTable
+from .models import CourseTable,TopicTable, AssignedCoursesTable
 from django.forms import ModelForm, TextInput, Textarea, Select
 
 
@@ -40,4 +40,19 @@ class topicform(ModelForm):
                 'class': 'form_class',
                 'placeholder': 'Название курса'
             }),
+        }
+
+class AssignedCoursesForm(ModelForm):
+    class Meta:
+        model =AssignedCoursesTable
+        fields = ['id_course', 'id_user']
+        widgets = {
+            'id_course': Select(attrs={
+                'class': 'form_class',
+                'placeholder': 'Название курса'
+            }),
+            'id_users': Select(attrs={
+                'class': 'form_class',
+                'placeholder': 'Пользователь'
+            })
         }

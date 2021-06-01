@@ -1,10 +1,14 @@
 from django.urls import path
 from . import views
+from quiz.views import add_test
 
 urlpatterns = [
+        # TODO: link for add test
+        path('adt', add_test, name='add_test'),
         path('', views.cour, name='kurs'),
         path('user_course', views.user_cours, name = 'user_course'),
         path('adk', views.adk, name='adk'),
+        path('record', views.record, name='record'),
         path('mycours', views.my_cours, name='mycours'),
         path('<int:pk>/', views.detail, name='datail'),
         path('<int:pk>/new_topic', views.newtopic, name='newtopic'),

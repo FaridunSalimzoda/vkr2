@@ -1,7 +1,9 @@
 from django import forms
 from django.forms.widgets import RadioSelect
 from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput
-from .models import Quiz
+from  .models import Quiz
+from quiz.models import Question
+from mcq.models import MCQQuestion
 from django.contrib.auth.models import User
 from model_utils.managers import InheritanceManager
 from django.contrib.admin.widgets import FilteredSelectMultiple
@@ -49,34 +51,34 @@ class QuizForm(ModelForm):
                 'draft': CheckboxInput(attrs={}),
                 'url': TextInput(attrs={})
         }
-#
-#class  QuestionsFormmy(ModelForm):
-#    class Meta:
-#        model = MCQQuestion
-#        fields = ['category', 'content', 'explanation']
-#        widgets = {
-#            # здесь может быть поле для выбора теста, в который должен попавсть вопрос
-#            # 'quiz': TextInput(attrs={
-#            #     'class': 'form_class'
-#            # }),
-#
-#            'category': Select(attrs={
-#                'class': 'form_class',
-#                'placeholder': 'Курс'
-#            }),
-#
-#
-#            'content': TextInput(attrs={
-#                'class': 'form_class'
-#            }),
-#
-#            'explanation': TextInput(attrs={
-#                'class': 'form_class',
-#
-#            }),
-#
-#        }
-#
+
+class  QuestionsFormmy(ModelForm):
+    class Meta:
+        model = MCQQuestion
+        fields = ['category', 'content', 'explanation']
+        widgets = {
+            # здесь может быть поле для выбора теста, в который должен попавсть вопрос
+            # 'quiz': TextInput(attrs={
+            #     'class': 'form_class'
+            # }),
+
+            'category': Select(attrs={
+                'class': 'form_class',
+                'placeholder': 'Курс'
+            }),
+
+
+            'content': TextInput(attrs={
+                'class': 'form_class'
+            }),
+
+            'explanation': TextInput(attrs={
+                'class': 'form_class',
+
+            }),
+
+        }
+
 class RegistrForm(ModelForm):
     class Meta:
         model: User
@@ -85,8 +87,6 @@ class RegistrForm(ModelForm):
             'username': TextInput({}),
             'password': PasswordInput({})
         }
-
-
 # class MCQQuestForm(ModelForm):
 #     class Meta:
 #         model =

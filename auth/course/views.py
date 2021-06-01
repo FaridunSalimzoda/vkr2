@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import CourseTable, TopicTable
-from .form import CourseTableForm, topicform
+from .form import CourseTableForm, topicform, AssignedCoursesForm
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.contrib import auth
 
@@ -72,7 +72,6 @@ def newtopic(request, pk: any):
     }
     return render(request, 'cours/addTopic.html', data)
 
-
 def adk(request):
     error = ''
     if request.method == 'POST':
@@ -89,3 +88,18 @@ def adk(request):
     }
     return render(request, 'cours/addKurs.html', data)
 
+def record(request):
+    error = ''
+    if request.method == 'POST':
+        form = AssignedCoursesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('kurs')
+        else:
+            error = 'error'
+            form = AssignedCoursesForm()
+            date = {
+                'form': form,
+                'error': error
+            }
+            return render(request, 'cours/RecordToCourse.html', date)

@@ -43,4 +43,4 @@ class TopicTable(models.Model):
 
 class AssignedCoursesTable (models.Model):
     id_course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)
-    # id_user = models.ForeingKe(, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(user, on_delete=models.CASCADE, default=False)
