@@ -1,18 +1,16 @@
 import random
-from django import forms
-from django.forms.widgets import RadioSelect
-from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
-from .forms import QuestionForm, QuizForm, RegistrForm
-from .models import Quiz, Progress, Sitting, Question
+from .forms import QuestionForm, QuizForm, QuestionsFormmy, RegistrForm
+from .models import Quiz, Category, Progress, Sitting, Question
 from django.shortcuts import render, redirect
-from course.models import CourseTable, TopicTable
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 class QuizMarkerMixin(object):
@@ -34,7 +32,7 @@ class SittingFilterTitleMixin(object):
 
 class QuizListView(ListView):
     model = Quiz
-    template_name = 'quiz/quiz_list.html'
+
     # @login_required
     def get_queryset(self):
         queryset = super(QuizListView, self).get_queryset()
@@ -55,7 +53,8 @@ class QuizDetailView(DetailView):
         return self.render_to_response(context)
 
 
-
+class CategoriesListView(ListView):
+    model = Category
 
 
 class ViewQuizListByCategory(ListView):
@@ -64,7 +63,7 @@ class ViewQuizListByCategory(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         self.category = get_object_or_404(
-            TopicTable,
+            Category,
             category=self.kwargs['category_name']
         )
 
@@ -237,7 +236,8 @@ class QuizTake(FormView):
         return render(self.request, 'result.html', results)
 
 
-
+def index(request):
+    return render(request, 'index.html', {})
 
 
 
@@ -291,4 +291,3 @@ def add_questions(request):
         'error': error
     }
     return render(request, 'quiz/add_questions.html', data)
-

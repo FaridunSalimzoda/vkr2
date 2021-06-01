@@ -1,12 +1,13 @@
 from django import forms
 from django.forms.widgets import RadioSelect
 from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput
-from  .models import Quiz
+from .models import Quiz
 from quiz.models import Question
 from mcq.models import MCQQuestion
 from django.contrib.auth.models import User
 from model_utils.managers import InheritanceManager
 from django.contrib.admin.widgets import FilteredSelectMultiple
+
 
 class QuestionForm(forms.Form):
     def __init__(self, question, *args, **kwargs):
@@ -18,12 +19,13 @@ class QuestionForm(forms.Form):
 class QuizForm(ModelForm):
     class Meta:
         model = Quiz
+
         fields = ['title', 'description', 'category', 'random_order', 'max_questions', 'answers_at_end',
-                  'exam_paper', 'pass_mark','single_attempt', 'fail_text', 'draft', 'success_text', 'url']
+                  'exam_paper', 'pass_mark', 'single_attempt', 'fail_text', 'draft', 'success_text', 'url']
         widgets = {
             'title': TextInput(attrs={
                 'class': 'form_class',
-                }),
+            }),
             'description': Textarea(attrs={
                 'class': 'form_class',
 
@@ -32,27 +34,29 @@ class QuizForm(ModelForm):
                 'class': 'form_class',
 
             }),
-               'random_order': CheckboxInput(attrs={
+            'random_order': CheckboxInput(attrs={
 
-               }),
+            }),
 
-                  'max_questions': TextInput(attrs={
-                      'class': 'form_class'
-                  }),
-                  'answers_at_end': CheckboxInput(attrs={}),
-                'exam_paper': CheckboxInput(attrs={}),
-                  'single_attempt': CheckboxInput(attrs={
-                      'class': 'form_class',
-                      'placeholder': 'Пользователю будет разрешена только одна попытка'
-                  }),
-                  'pass_mark': TextInput(attrs={}),
-                'success_text': TextInput(attrs={'class': 'form_class'}),
-                'fail_text': TextInput(attrs={'class': 'form_class'}),
-                'draft': CheckboxInput(attrs={}),
-                'url': TextInput(attrs={})
+            'max_questions': TextInput(attrs={
+                'class': 'form_class'
+            }),
+            'answers_at_end': CheckboxInput(attrs={}),
+            'exam_paper': CheckboxInput(attrs={}),
+            'single_attempt': CheckboxInput(attrs={
+                'class': 'form_class',
+                'placeholder': 'Пользователю будет разрешена только одна попытка'
+            }),
+            'pass_mark': TextInput(attrs={}),
+            'success_text': TextInput(attrs={'class': 'form_class'}),
+            'fail_text': TextInput(attrs={'class': 'form_class'}),
+            'draft': CheckboxInput(attrs={}),
+            'url': TextInput(attrs={}),
+            'MCQQuestion': InheritanceManager() #TODO: Questions Manager from teamplates add_test.html
         }
 
-class  QuestionsFormmy(ModelForm):
+
+class QuestionsFormmy(ModelForm):
     class Meta:
         model = MCQQuestion
         fields = ['category', 'content', 'explanation']
@@ -64,9 +68,8 @@ class  QuestionsFormmy(ModelForm):
 
             'category': Select(attrs={
                 'class': 'form_class',
-                'placeholder': 'Курс'
+                'placeholder': 'Тема'
             }),
-
 
             'content': TextInput(attrs={
                 'class': 'form_class'
@@ -78,6 +81,7 @@ class  QuestionsFormmy(ModelForm):
             }),
 
         }
+
 
 class RegistrForm(ModelForm):
     class Meta:

@@ -17,6 +17,32 @@ from django.contrib import messages
 from course.models import CourseTable, TopicTable
 
 
+class CategoryManager(models.Manager):
+
+    def new_category(self, category):
+        new_category = self.create(category=re.sub('\s+', '-', category)
+                                   .lower())
+
+        new_category.save()
+        return new_category
+
+
+class Category(models.Model):
+
+    category = models.CharField(
+        verbose_name=_("Category"),
+        max_length=250, blank=True,
+        unique=True, null=True)
+
+    objects = CategoryManager()
+
+    class Meta:
+        verbose_name = _("Категория")
+        verbose_name_plural = _("Категории")
+
+    def __str__(self):
+        return self.category
+
 
 class Quiz(models.Model):
 
@@ -142,10 +168,10 @@ class ProgressManager(models.Manager):
 
 class Progress(models.Model):
     """
-    Прогресс используется для отслеживания оценки отдельных пользователей, вошедших в систему, на разных
-    викторины и категории
-    Данные, хранящиеся в формате csv с использованием формата:
-        категория, оценка, возможно, категория, оценка, возможно,...
+    Progress is used to track an individual signed in users score on different
+    quiz's and categories
+    Data stored in csv using the format:
+        category, score, possible, category, score, possible, ...
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_("Пользователь"), on_delete=models.CASCADE)
 
@@ -554,7 +580,7 @@ class CSVUpload(models.Model):
         return self.user.username
 
 def create_user(data):
-    user =  User.objects.create_user(username=data['username'],
+    user =  User.objects.create_user(username=data['username'], 
                             email=data['email'],
                             password=data['password'],
                             first_name=data['first_name'],
@@ -611,82 +637,10 @@ def csv_upload_post_save(sender, instance, created, *args, **kwargs):
                 setattr(new_obj, key) = item
                 i+=1
             new_obj.save()
-        '''
+        ''' 
         instance.completed = True
         instance.save()
 
 
 post_save.connect(csv_upload_post_save, sender=CSVUpload)
-
-
-ANSWER_ORDER_OPTIONS = (
-    ('content', 'Content'),
-    ('none', 'None'),
-    # ('random', 'Random')
-)
-
-
-class MCQQuestion(Question):
-
-    answer_order = models.CharField(
-        max_length=30, null=True, blank=True,
-        choices=ANSWER_ORDER_OPTIONS,
-        help_text="Порядок, в котором множественном варианты ответа отображаются для пользователя",
-        verbose_name="Порядок ответа")
-
-    def check_if_correct(self, guess):
-        answer = Answer.objects.get(id=guess)
-
-        if answer.correct is True:
-            return True
-        else:
-            return False
-
-    def order_answers(self, queryset):
-        if self.answer_order == 'content':
-            return queryset.order_by('content')
-        # if self.answer_order == 'random':
-        #     return queryset.order_by('Random')
-        if self.answer_order == 'none':
-            return queryset.order_by('None')
-
-    def get_answers(self):
-        return self.order_answers(Answer.objects.filter(question=self))
-
-    def get_answers_list(self):
-        return [(answer.id, answer.content) for answer in self.order_answers(Answer.objects.filter(question=self))]
-
-    def answer_choice_to_string(self, guess):
-        return Answer.objects.get(id=guess).content
-
-    class Meta:
-        verbose_name = "Вопрос С множественным Выбором"
-        verbose_name_plural = "Вопросы С множественным Выбором"
-
-
-class Answer(models.Model):
-    question = models.ForeignKey(MCQQuestion, verbose_name='Вопросы', on_delete=models.CASCADE)
-
-    content = models.CharField(max_length=1000,
-                               blank=False,
-                               help_text="Введите текст ответа, который \
-                                            вы хотите показать",
-                               verbose_name="Содержание")
-
-    correct = models.BooleanField(blank=False,
-                                  default=False,
-                                  help_text="Это правильный ответ?",
-                                  verbose_name="Правильный")
-
-    def __str__(self):
-        return self.content
-
-
-    class Meta:
-        verbose_name = "Ответ"
-        verbose_name_plural = "Ответы"
-
-
-
-
 

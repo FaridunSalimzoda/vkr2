@@ -45,7 +45,7 @@ class UserChangeForm(UserChangeForm):
                     'is_admin', 'is_teacher', 'is_students','students_groups' )
     # def clean_password(self):
     #     return self.initial["password"]
-
+#TODO: fix user change form
 class UserAdmin(BaseUserAdmin):
         form = UserCreationForm
         add_form = UserCreationForm
