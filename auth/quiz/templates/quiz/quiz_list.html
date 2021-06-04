@@ -35,9 +35,8 @@
 			  <td>{{ quiz.exam_paper }}</td>
 			  <td>{{ quiz.single_attempt }}</td>
 			  <td>
-				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
-				  {% trans "Подробнее" %}
-				</a>
+				<a  class="btn btn-success" href="{% url 'quiz_start_page' slug=quiz.url %}">
+				 {% trans "Подробнее" %}</a>
 			</tr>
 
         {% endfor %}

@@ -40,7 +40,7 @@ class user(AbstractBaseUser, PermissionsMixin):
     is_students = models.BooleanField('Студент',default=True)
     name = models.TextField('Имя',max_length=255, default=False)
     last_name = models.TextField('Фамилия',max_length=255, default=False)
-    patronymic = models.TextField('Отчество',max_length=255, default='patronymic')
+    patronymic = models.TextField('Отчество',max_length=255, default=False, blank=True)
     students_groups = models.TextField('Группа',max_length=10, default='group')
 
     class Meta:

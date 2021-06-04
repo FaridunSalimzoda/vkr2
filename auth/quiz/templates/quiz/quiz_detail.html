@@ -29,7 +29,7 @@
 {% endif %}
 <p>{{ quiz.description }}</p>
 <p>
-  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+  <a class="btn btn-success" href="{% url 'quiz_question' quiz_name=quiz.url %}">
 	{% trans "Пройти тест" %}
   </a>
 </p>

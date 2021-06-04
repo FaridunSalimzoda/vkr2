@@ -1,10 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
-from quiz.views import add_test
+
 
 urlpatterns = [
-        # TODO: link for add test
-        path('adt', add_test, name='add_test'),
+
+        path('test/', include('quiz.urls'), name='add_test'),
         path('', views.cour, name='kurs'),
         path('user_course', views.user_cours, name = 'user_course'),
         path('adk', views.adk, name='adk'),

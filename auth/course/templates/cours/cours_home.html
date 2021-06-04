@@ -30,7 +30,7 @@
 		<td class="p-2 text-dark">{{ el.title }}</td>
 		<td class="p-2 text-dark">{{ el.task }}</td>
 		<td class="p-2 text-dark">{{user.name}} {{user.last_name}}</td>
-		<td class="p-2 text-dark"><a href="{% url 'datail' el.id %}">Перейти</a></td>
+		<td class="p-2 text-dark"><a class="btn btn-success" href="{% url 'datail' el.id %}">Перейти</a></td>
 	</tr>
 </table>
 {%endfor%}

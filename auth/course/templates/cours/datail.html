@@ -9,7 +9,6 @@
 {% block content %}
 <h1>Название курса: {{ post.title }}</h1>
 <p>Описание курса: {{ post.task }}</p>
-<p>Преподаватель: {{ post.teacher }}</p>
 <div class="menu_gl">
 	<ul class="menu">
 		<li><a href="{% url 'delete' pk %}">Удалить курс</a></li>

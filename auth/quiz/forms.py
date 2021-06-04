@@ -5,8 +5,8 @@ from .models import Quiz
 from quiz.models import Question
 from mcq.models import MCQQuestion
 from django.contrib.auth.models import User
-from model_utils.managers import InheritanceManager
 from django.contrib.admin.widgets import FilteredSelectMultiple
+
 
 
 class QuestionForm(forms.Form):
