@@ -20,6 +20,8 @@ def account(request):
 
     return render(request, 'main/account.html')
 
+def setting_user(request):
+    return render(request, 'main/setting_user.html')
 
 def login_user(request):
     if request.method == 'POST':

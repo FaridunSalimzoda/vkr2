@@ -251,9 +251,11 @@ def add_test(request):
         else:
             error = 'error'
     form = QuizForm()
+    form1 = QuestionsFormmy()
     data = {
         'form': form,
-        'error': error
+        'error': error,
+        'form1': form1
     }
     return render(request, 'quiz/add_test.html', data)
 

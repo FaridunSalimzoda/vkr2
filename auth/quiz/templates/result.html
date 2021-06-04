@@ -4,22 +4,24 @@
 
 {% load quiz_tags %}
 
-{% block title %} {{ quiz.title}} {% endblock %}
-{% block description %} {% trans "Exam Results for" %} {{ quiz.title }} {% endblock %}
+{% block title %}
+Результат
+{% endblock %}
+{% block description %} {% trans "Результаты экзамена по" %} {{ quiz.title }} {% endblock %}
 
 {% block content %}
 
   {% if previous.answers %}
 
-  <p class="muted"><small>{% trans "The previous question" %}:</small></p>
+  <p class="muted"><small>{% trans "Предыдущий вопрос" %}:</small></p>
   <p>{{ previous.previous_question }}</p>
-  <p>Your answer was
+  <p>Ваш ответ был
 	<strong>
-	  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+	  {{ previous.previous_outcome|yesno:"Верный, Неверный" }}
 	</strong>
   </p>
   {% include 'correct_answer.html' %}
-  <p><strong>{% trans "Explanation" %}:</strong></p>
+  <p><strong>{% trans "Объяснение" %}:</strong></p>
   <div class="well " style="background-color: #fcf8e3;">
     <p>{{ previous.previous_question.explanation }}</p>
   </div>
@@ -30,13 +32,13 @@
   {% if max_score %}
 
   <div>
-	<h2>{% trans "Exam results" %}</h2>
+	<h2>{% trans "Результаты экзамена" %}</h2>
 	<p>
-	  <small class="muted">{% trans "Exam title" %}: </small>
+	  <small class="muted">{% trans "Экзамен по" %}: </small>
 	  <strong>{{ quiz.title }}</strong></p>
 
 	<p class="lead">
-	  {% trans "You answered" %} {{ score }} {% trans "questions correctly out of" %} {{ max_score }}, {% trans "giving you" %} {{ percent }} {% trans "percent correct" %}
+	  {% trans "Вы ответили" %} {{ score }} {% trans "вопросы правильно из" %} {{ max_score }}, {% trans "что дало вам" %} {{ percent }} {% trans "процентов" %}
 	</p>
 
 	{% if quiz.pass_mark %}
@@ -46,11 +48,11 @@
 
 	{% endif %}
 
-	<p>{% trans "Review the questions below and try the exam again in the future"%}.</p>
+	<p>{% trans "Просмотрите вопросы ниже и повторите экзамен в будущем"%}.</p>
 
 	{% if user.is_authenticated %}
 
-	  <p>{% trans "The result of this exam will be stored in your progress section so you can review and monitor your progression" %}.</p>
+	  <p>{% trans "Результаты этого экзамена будут сохранены в разделе Прогресс, чтобы вы могли просматривать и отслеживать свой прогресс" %}.</p>
 
 	{% endif %}
   </div>
@@ -64,7 +66,7 @@
   {% if possible %}
 
   <p class="lead">
-	{% trans "Your session score is" %} {{ session }} {% trans "out of a possible" %} {{ possible }}
+	{% trans "Ваш счет " %} {{ session }} {% trans "из возможного" %} {{ possible }}
   </p>
 
   <hr>
@@ -82,10 +84,10 @@
 	  {% correct_answer_for_all question %}
 
       {% if question.user_answer %}
-      <p>{% trans "Your answer" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
+      <p>{% trans "Ваш ответ" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
       {% endif %}
 
-	  <p><strong>{% trans "Explanation" %}:</strong></p>
+	  <p><strong>{% trans "Объяснение" %}:</strong></p>
 	  <div class="well " style="background-color: #fcf8e3;">
 		<p>{{ question.explanation|safe }}</p>
 	  </div>

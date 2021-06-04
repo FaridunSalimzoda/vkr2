@@ -4,8 +4,8 @@
 
 {% load quiz_tags %}
 
-{% block title %} {% trans "Progress Page" %} {% endblock %}
-{% block description %} {% trans "User Progress Page" %} {% endblock %}
+{% block title %} {% trans "Прогресс" %} {% endblock %}
+{% block description %} {% trans "Прогресса пользователя" %} {% endblock %}
 
 {% block content %}
 <div class="menu_gl">
@@ -21,18 +21,19 @@
         {% endif %}
 
       </ul>
+	</ul>
 </div>
   {% if cat_scores %}
 
-  <h1>{% trans "Question Category Scores" %}</h1>
+  <h1>{% trans "Баллы по темам вопросов" %}</h1>
 
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
-		<th>{% trans "Category" %}</th>
-		<th>{% trans "Correctly answererd" %}</th>
-		<th>{% trans "Incorrect" %}</th>
+		<th>{% trans "Тема" %}</th>
+		<th>{% trans "Верный ответ" %}</th>
+		<th>{% trans "Неверный" %}</th>
 		<th>%</th>
 	  </tr>
 	</thead>
@@ -59,20 +60,20 @@
 
   {% if exams %}
 
-  <hr>
 
-  <h1>{% trans "Previous exam papers" %}</h1>
+
+  <h1>{% trans "Предыдущие экзаменационные работы" %}</h1>
   <p class="lead">
-	{% trans "Below are the results of exams that you have sat." %}
+	{% trans "Ниже приведены результаты экзаменов, которые вы сдали." %}
   </p>
 
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
-		<th>{% trans "Quiz Title" %}</th>
-		<th>{% trans "Score" %}</th>
-		<th>{% trans "Possible Score" %}</th>
+		<th>{% trans "Название теста" %}</th>
+		<th>{% trans "Счет" %}</th>
+		<th>{% trans "Возможный Счет" %}</th>
 		<th>%</th>
 	  </tr>
 	</thead>

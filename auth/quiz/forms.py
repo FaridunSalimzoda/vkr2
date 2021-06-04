@@ -52,7 +52,8 @@ class QuizForm(ModelForm):
             'fail_text': TextInput(attrs={'class': 'form_class'}),
             'draft': CheckboxInput(attrs={}),
             'url': TextInput(attrs={}),
-            'MCQQuestion': InheritanceManager() #TODO: Questions Manager from teamplates add_test.html
+
+
         }
 
 
