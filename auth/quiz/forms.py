@@ -51,7 +51,7 @@ class QuizForm(ModelForm):
             'success_text': TextInput(attrs={'class': 'form_class'}),
             'fail_text': TextInput(attrs={'class': 'form_class'}),
             'draft': CheckboxInput(attrs={}),
-            'url': TextInput(attrs={}),
+            'url': TextInput(attrs={}),#TODO: Here
 
 
         }
