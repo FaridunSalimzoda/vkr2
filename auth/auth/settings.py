@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -123,3 +124,10 @@ LOGIN_URL = '/account/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "project_staticfiles"),
+]
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles_cdn')
+MEDIA_URL = '/mediafiles/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'medeiafiles_cdn')

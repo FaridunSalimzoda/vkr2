@@ -27,12 +27,11 @@
            <div class="dropdown-content">
 
               <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
- <a href="{% url 'setting' %}">Настройки</a>
-          <a class="nav-link" href="{% url 'logout' %}">Выход {{user.name}} {{user.last_name}}</a>
+        <li class="nav-item nav-mylik"><a href="{% url 'setting' %}">Настройки</a>
+          <a class="nav-link nav-mylik" href="{% url 'logout' %}">Выход {{user.name}} {{user.last_name}}</a>
 
           {% else %}
-          <a class="nav-link" href="{% url 'logout' %}">Вход</a>
+          <a class="nav-link nav-mylik" href="{% url 'logout' %}">Вход</a>
           {% endif %}
         </li>
       </ul>
