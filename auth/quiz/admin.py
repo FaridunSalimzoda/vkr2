@@ -41,6 +41,7 @@ class QuizAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(QuizAdminForm, self).__init__(*args, **kwargs)
+        print('Instance: ', self.instance)
         if self.instance.pk:
             self.fields['questions'].initial = \
                 self.instance.question_set.all().select_subclasses()

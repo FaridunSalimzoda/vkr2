@@ -55,7 +55,7 @@ class UserChangeForm(UserChangeForm):
     password hash display field.
     """
     # password = ReadOnlyPasswordHashField()
-    print(UserChangeForm)
+    # print(UserChangeForm)
     class Meta:
         model = user
         fields = ('email', 'name','last_name','patronymic',

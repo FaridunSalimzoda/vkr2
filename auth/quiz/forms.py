@@ -6,7 +6,7 @@ from quiz.models import Question
 from mcq.models import MCQQuestion
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import FilteredSelectMultiple
-
+from django.utils.translation import ugettext_lazy as _
 
 
 class QuestionForm(forms.Form):
@@ -51,10 +51,32 @@ class QuizForm(ModelForm):
             'success_text': TextInput(attrs={'class': 'form_class'}),
             'fail_text': TextInput(attrs={'class': 'form_class'}),
             'draft': CheckboxInput(attrs={}),
-            'url': TextInput(attrs={}),#TODO: Here
-
-
+            'url': TextInput(attrs={})
         }
+
+    questions = forms.ModelMultipleChoiceField(
+        queryset=Question.objects.all().select_subclasses(),
+        required=False,
+        label=_("Questions"),
+        widget=FilteredSelectMultiple(
+            verbose_name=_("Вопросы"),
+            is_stacked=False))
+
+    filter_horizontal = questions
+
+    def __init__(self, *args, **kwargs):
+        super(QuizForm, self).__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['questions'].initial = \
+                self.instance.question_set.all().select_subclasses()
+            print(self.fields)
+
+    def save(self, commit=True):
+        quiz = super(QuizForm, self).save(commit=False)
+        quiz.save()
+        quiz.question_set.set(self.cleaned_data['questions'])
+        self.save_m2m()
+        return quiz
 
 
 class QuestionsFormmy(ModelForm):
