@@ -1,47 +1,41 @@
-{% extends 'main/base.html' %}
-
-{% block title %}
-{{ post.title }}
-{% endblock %}
-
-
-
-{% block content %}
+{% extends 'main/base.html' %} {% block title %} {{ post.title }} {% endblock %} {% block content %}
 <h1>Название курса: {{ post.title }}</h1>
 <p>Описание курса: {{ post.task }}</p>
-<div class="menu_gl">
-	<ul class="menu">
-		<li><a href="{% url 'delete' pk %}">Удалить курс</a></li>
-		<li><a href="{% url 'update' pk %}">Изменить курс</a></li>
-		<li><a href="{% url 'newtopic' pk %}">Добавить тему</a></li>
-		<li><a href="{% url 'record'  %}">Записаться на курс</a></li>
-	</ul>
-</div>
 
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+                        <li><a href="{% url 'delete' pk %}">Удалить курс</a></li>
+                        <li><a href="{% url 'update' pk %}">Изменить курс</a></li>
+                        <li><a href="{% url 'newtopic' pk %}">Добавить тему</a></li>
+                        <li><a href="{% url 'record'  %}">Записаться на курс</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="table_right">
 
+                {% if top %} {% for el in top %}
 
+                <table class="tftable">
+                    <tr>
+                        <th class="p-2 text-dark">Название темы</th>
+                        <th class="p-2 text-dark">Описание темы</th>
+                        <th class="p-2 text-dark">Ссылка</th>
 
-<div class="co">
-      {% if top %}
-    {% for el in top %}
-
-		<table class="tftable">
-			<tr>
-				<th class="p-2 text-dark">Название темы</th>
-				<th class="p-2 text-dark">Описание темы</th>
-				<th class="p-2 text-dark">Ссылка</th>
-		
-			</tr>
-			<tr>
-				<td class="p-2 text-dark">{{ el.title }}</td>
-				<td class="p-2 text-dark">{{ el.task }}</td>
-				<td class="p-2 text-dark"><a href="{% url 'top_datail' pk el.id %}">Перейти</a></td>
-			</tr>
-		</table>
-{%endfor%}
-   {% else %}
-   <p>Вы не добавили темы</p>
-   {%endif%}
-   {% endblock %}
-
-</div>
+                    </tr>
+                    <tr>
+                        <td class="p-2 text-dark">{{ el.title }}</td>
+                        <td class="p-2 text-dark">{{ el.task }}</td>
+                        <td class="btn btn-success"><a href="{% url 'top_datail' pk el.id %}">Перейти</a></td>
+                    </tr>
+                </table>
+                {%endfor%} {% else %}
+                <p>Вы не добавили темы</p>
+                {%endif%} {% endblock %}
+            </td>
+        </tr>
+    </tbody>
+</table>

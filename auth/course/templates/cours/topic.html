@@ -1,35 +1,36 @@
-{% extends 'main/base.html' %}
+{% extends 'main/base.html' %} {% block title %} {{ top.title }} {% endblock %} {% block content %}
 
-{% block title %}
-{{ top.title }}
-{% endblock %}
-
-
-
-{% block content %}
 <h1>{{ top.title }}</h1>
 
-<div>
-	<ul class="menu">
-		<li><a href="{% url 'topic_update' kk 1 %}">Изменить тему</a></li>
-        <li><a href="{% url 'topic_delete' kk 1 %}">Удалить тему</a></li>
-        <li><a href="{% url 'add_test'%}">Добавить тест</a></li>
-	</ul>
-</div>
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+                <div>
+                    <ul class="menu">
+                        <li><a href="{% url 'topic_update' kk 1 %}">Изменить тему</a></li>
+                        <li><a href="{% url 'topic_delete' kk 1 %}">Удалить тему</a></li>
+                        <li><a href="{% url 'add_test'%}">Добавить тест</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="table_right">
+
+                {% if top %}
+
+                <div class="kurs">
+                    <h3>{{ top.title }}</h3>
+                    <h3>{{ top.task }}</h3>
+                </div>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 
 
-<div class="co">
-        {% if top %}
-
-   <div class="kurs">
-       <h3>{{ top.title }}</h3>
-       <h3>{{ top.task }}</h3>
-   </div>
-
-
-   {% else %}
-   <p>Нет содержимого</p>
-   {%endif%}
-   {% endblock %}
+{% else %}
+<p>Нет содержимого</p>
+{%endif%} {% endblock %}

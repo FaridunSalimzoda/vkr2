@@ -350,7 +350,7 @@ class Sitting(models.Model):
     with the answer the user gave.
     """
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE)#TODO: Посмотрите это, тут так и оставить?
 
     quiz = models.ForeignKey(Quiz, verbose_name=_("Quiz"), on_delete=models.CASCADE)
 
@@ -524,12 +524,12 @@ class Question(models.Model):
                                   blank=True,
                                   null = True)
 
-    category = models.ForeignKey(CourseTable,
-                                 verbose_name=_("Курс"),
+    category = models.ForeignKey(TopicTable, #TODO: И тут нужен TopicTable , но не мигрирует
+                                 verbose_name=_("Тема"),
                                  blank=True,
                                  null=True, on_delete=models.CASCADE)
 
-    figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
+    figure = models.ImageField(upload_to='uploads/%Y/%m/%d' ,
                                blank=True,
                                null=True,
                                verbose_name=_("Файл"))

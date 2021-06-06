@@ -1,50 +1,56 @@
-{% extends 'main/base.html' %}
-{% load i18n %}
-{% load quiz_tags %}
-{% block title %}{% trans "Тест" %}{% endblock %}
+{% extends 'main/base.html' %} {% load i18n %} {% load quiz_tags %} {% block title %}{% trans "Тест" %}{% endblock %} {% block content %}
 
-{% block content %}
-<div class="menu_gl">
-	<ul class="menu">
-		<li><a class="cours_menu_a" href="#">Все тесты</a></li>
-		<li><a href="#">Мои тесты</a></li>
-		<li><a href="{% url 'add_test' %}">Добавить тест</a></li>
-			</ul>
-</div>
-<h2>{% trans "Тест" %}</h2>
-    {% if quiz_list %}
-		<table class="table table-bordered table-striped">
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+                        <li><a class="cours_menu_a" href="#">Все тесты</a></li>
+                        <li><a href="#">Мои тесты</a></li>
+                        <li><a href="{% url 'add_test' %}">Добавить тест</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="table_right">
 
-		  <thead>
-			<tr>
-			  <th>{% trans "Название" %}</th>
-			  <th>{% trans "Тема" %}</th>
-			  <th>{% trans "Экзамен" %}</th>
-			  <th>{% trans "Одна попытка" %}</th>
-			  <th></th>
-			</tr>
-		  </thead>
+                <h2>{% trans "Тест" %}</h2>
+                {% if quiz_list %}
+                <table class="table table-bordered table-striped">
 
-		  <tbody>
+                    <thead>
+                        <tr>
+                            <th>{% trans "Название" %}</th>
+                            <th>{% trans "Тема" %}</th>
+                            <th>{% trans "Экзамен" %}</th>
+                            <th>{% trans "Одна попытка" %}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-        {% for quiz in quiz_list %}
+                    <tbody>
 
-  			<tr>
-			  <td>{{ quiz.title }}</td>
-			  <td>{{ quiz.category }}</td>
-			  <td>{{ quiz.exam_paper }}</td>
-			  <td>{{ quiz.single_attempt }}</td>
-			  <td>
-				<a  class="btn btn-success" href="{% url 'quiz_start_page' slug=quiz.url %}">
+                        {% for quiz in quiz_list %}
+
+                        <tr>
+                            <td>{{ quiz.title }}</td>
+                            <td>{{ quiz.category }}</td>
+                            <td>{{ quiz.exam_paper }}</td>
+                            <td>{{ quiz.single_attempt }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{% url 'quiz_start_page' slug=quiz.url %}">
 				 {% trans "Подробнее" %}</a>
-			</tr>
+                        </tr>
 
-        {% endfor %}
-		  </tbody>
+                        {% endfor %}
+                    </tbody>
 
-		</table>
+                </table>
 
-	{% else %}
-        <p>{% trans "Нет доступных тестов" %}.</p>
-    {% endif %}
-{% endblock %}
+                {% else %}
+                <p>{% trans "Нет доступных тестов" %}.</p>
+                {% endif %} {% endblock %}
+                </td>
+        </tr>
+    </tbody>
+</table>

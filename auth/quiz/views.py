@@ -283,10 +283,10 @@ def add_questions(request):
         form = QuestionsFormmy(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('quiz_index')
         else:
             error = 'error'
-            return redirect('index')
+            return redirect('quiz_index')
     form = QuestionsFormmy()
     data = {
         'form': form,

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import RadioSelect
-from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput
+from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput, FileInput
 from .models import Quiz
 from quiz.models import Question
 from mcq.models import MCQQuestion
@@ -20,7 +20,7 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
 
-        fields = ['title', 'description', 'category', 'random_order', 'max_questions', 'answers_at_end',
+        fields = ['title', 'description', 'category', 'figure', 'random_order', 'max_questions', 'answers_at_end',
                   'exam_paper', 'pass_mark', 'single_attempt', 'fail_text', 'draft', 'success_text', 'url']
         widgets = {
             'title': TextInput(attrs={
@@ -32,6 +32,9 @@ class QuizForm(ModelForm):
             }),
             'category': Select(attrs={
                 'class': 'form_class',
+
+            }),
+            'figure': ImageField(attrs={ #TODO И тут тоже не понятно
 
             }),
             'random_order': CheckboxInput(attrs={
