@@ -436,3 +436,7 @@
     .table_right {
         width: 70%;
     }
+    
+    .user_img {
+        max-width: 100%;
+    }

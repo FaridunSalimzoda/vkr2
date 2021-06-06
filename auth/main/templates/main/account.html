@@ -28,9 +28,10 @@
                     <tbody>
                         <tr>
                             <td class="table_left">
-                                <p> <img src="{{MEDIA.URL }} {{ user.image.url }} " alt="аватар "></p>
+                                <p> <img class="user_img" src="{{MEDIA.URL }} {{ user.photo.url }} " alt="аватар "></p>
                             </td>
-                            <td class="table_right title_name__table">{{user.name}} {{user.last_name}} </td>
+                            <td class="table_right title_name__table">{{user.name}} {{user.last_name}} {{user.students_groups}}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
