@@ -1,27 +1,43 @@
-{% extends "main/base.html" %}
+{% extends "main/base.html" %} {% block content %}
 
-{% block content %}
-<div class="menu_gl">
-	<ul class="menu">
-	   <ul class="navbar-nav rm-auto">
-        {% if user.is_authenticated %}
-        <li class="nav-tem" style="color:gray">
-          <a href="{% url 'quiz_index' %}" class="nav-link">Тесты</a>
-        </li>
-        <li class="nav-tem" style="color:gray">
-            <a href="{% url 'quiz_progress' %}" class="nav-link">Прогресс</a>
-          </li>
-        {% endif %}
-       </ul>
-      </ul>
-</div>
-<h1>Личный кабинет</h1>
-{% if user.is_authenticated %}
-    <p>Логин: {{user.email}}</p>
-    <p>Имя Фамилия: {{user.name}} {{user.last_name}}</p>
-    <p>Email: {{user.email}}</p>
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+                <div class="menu_gl ">
+                    <ul class="menu ">
+                        <ul class="navbar-nav rm-auto ">
+                            {% if user.is_authenticated %}
+                            <li class="nav-tem " style="color:gray ">
+                                <a href="{% url 'quiz_index' %} " class="nav-link ">Тесты</a>
+                            </li>
+                            <li class="nav-tem " style="color:gray ">
+                                <a href="{% url 'quiz_progress' %} " class="nav-link ">Прогресс</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </ul>
+                </div>
 
-<img src="{{MEDIA.URL}}{{ image.url }}" alt="аватар">
-{% endif %}
 
-{% endblock  %}
+            </td>
+            <td class="table_right">
+
+                {% if user.is_authenticated %}
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="table_left">
+                                <p> <img src="{{MEDIA.URL }} {{ user.image.url }} " alt="аватар "></p>
+                            </td>
+                            <td class="table_right title_name__table">{{user.name}} {{user.last_name}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                {% endif %} {% endblock %}
+            </td>
+        </tr>
+    </tbody>
+</table>
