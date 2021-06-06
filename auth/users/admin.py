@@ -5,6 +5,23 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm
 from django.core.exceptions import ValidationError
 from .models import user
+from django.forms import ModelForm
+from PIL import Image
+class PhotoUsers(ModelForm):
+    MIN_RESOLUTION = (400,400)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].help_test = "Минимальное разрешение {}x{}".format( *self.MIN_RESOLUTION)
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        img = Image.open(image)
+        min_height, min_width = self.MIN_RESOLUTION
+        if img.height < min_height or img.width < min_width:
+            raise ValidationError('Разрешение не соответствует требованием!')
+        return image
+
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
