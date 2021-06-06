@@ -8,7 +8,7 @@ ANSWER_ORDER_OPTIONS = (
 )
 
 
-class MCQQuestion(Question): #TODO: Output this table to a file form.py
+class MCQQuestion(Question): #TODO: Output this table to a file forms.py
 
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,

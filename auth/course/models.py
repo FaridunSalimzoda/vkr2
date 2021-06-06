@@ -44,3 +44,7 @@ class TopicTable(models.Model):
 class AssignedCoursesTable (models.Model):
     id_course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)
     id_user = models.ForeignKey(user, on_delete=models.CASCADE, default=False)
+
+    class Meta:
+        verbose_name = 'Запись на курс'
+        verbose_name_plural = 'Запись на курс'

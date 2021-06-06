@@ -437,6 +437,10 @@
         width: 70%;
     }
     
+    td.table_righ {
+        display: block;
+    }
+    
     .user_img {
-        max-width: 100%;
+        max-width: 75%;
     }

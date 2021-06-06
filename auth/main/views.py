@@ -12,6 +12,11 @@ from django.views.generic.edit import FormView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from users.forms import UserUpdateForm
+from django.views.generic import UpdateView, DeleteView
+from users.models import user
+User_table = user
 
 def index(request):
     return render(request, 'main/index.html')
@@ -19,9 +24,15 @@ def index(request):
 def account(request):
 
     return render(request, 'main/account.html')
+@login_required
+def my_view(request):
+    if not request.user.is_authenticated():
+        return render(request, 'myapp/error_403.html')
 
-def setting_user(request):
-    return render(request, 'main/setting_user.html')
+class setting_user(UpdateView):
+    model = User_table
+    form_class = UserUpdateForm
+    template_name =  'main/setting_user.html'
 
 def login_user(request):
     if request.method == 'POST':

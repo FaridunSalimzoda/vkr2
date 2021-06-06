@@ -3,7 +3,7 @@ from .models import CourseTable, TopicTable
 from .form import CourseTableForm, topicform, AssignedCoursesForm
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.contrib import auth
-
+from users.models import user
 
 def cour(request):
     ku = CourseTable.objects.order_by('id')
@@ -25,7 +25,7 @@ def topic_dateil(request, pk, kk):
     return render(request, 'cours/topic.html', {'top': top[0], 'pk': pk, 'kk': kk})
 
 def my_cours(request):
-    ku = CourseTable.objects.order_by('teacher')
+    ku = CourseTable.objects.order_by('teacher.id')
     return render(request, 'cours/mykurs.html', {'ku': ku})
 
 
@@ -97,9 +97,9 @@ def record(request):
             return redirect('kurs')
         else:
             error = 'error'
-            form = AssignedCoursesForm()
-            date = {
-                'form': form,
-                'error': error
-            }
-            return render(request, 'cours/RecordToCourse.html', date)
+    form = AssignedCoursesForm()
+    date = {
+           'form': form,
+           'error': error
+    }
+    return render(request, 'cours/RecordToCourse.html', date)
