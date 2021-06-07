@@ -20,7 +20,7 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
 
-        fields = ['title', 'description', 'category', 'figure', 'random_order', 'max_questions', 'answers_at_end',
+        fields = ['title', 'description', 'category', 'random_order', 'max_questions', 'answers_at_end',
                   'exam_paper', 'pass_mark', 'single_attempt', 'fail_text', 'draft', 'success_text', 'url']
         widgets = {
             'title': TextInput(attrs={
@@ -34,9 +34,8 @@ class QuizForm(ModelForm):
                 'class': 'form_class',
 
             }),
-            'figure': ImageField(attrs={ #TODO И тут тоже не понятно
 
-            }),
+
             'random_order': CheckboxInput(attrs={
 
             }),

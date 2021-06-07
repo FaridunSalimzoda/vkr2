@@ -42,7 +42,7 @@ class user(AbstractBaseUser, PermissionsMixin):
     last_name = models.TextField('Фамилия',max_length=255, default=False)
     patronymic = models.TextField('Отчество',max_length=255, default=False, blank=True)
     students_groups = models.TextField('Группа',max_length=10, default='group')
-    photo = models.ImageField('Фото',default='path/to/my/default/image.jpg')
+    photo = models.ImageField(default="")
 
     class Meta:
             verbose_name = 'Пользователя'
