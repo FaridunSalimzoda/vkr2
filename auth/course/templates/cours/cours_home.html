@@ -3,6 +3,16 @@
 <table class="table">
     <tbody>
         <tr>
+            {% if user.is_students %}
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+                        <li><a class="cours_menu_a" href="{% url 'kurs' %}">Все курсы</a></li>
+                        <li><a href="{% url 'mycours' %}">Мои курсы</a></li>
+                    </ul>
+                </div>
+            </td>
+            {% else %}
             <td class="table_left">
                 <div class="menu_gl">
                     <ul class="menu">
@@ -12,6 +22,7 @@
                     </ul>
                 </div>
             </td>
+            {% endif %}
             {% if ku%} {% for el in ku %}
             <td class="table_righ">
                 <table class="tftable">

@@ -5,6 +5,15 @@
 <table class="table">
     <tbody>
         <tr>
+            {% if user.is_students %}
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+
+                        <li><a href="{% url 'record'  %}">Записаться на курс</a></li>
+                    </ul>
+                </div>
+            </td> {% else %}
             <td class="table_left">
                 <div class="menu_gl">
                     <ul class="menu">
@@ -15,6 +24,7 @@
                     </ul>
                 </div>
             </td>
+            {%endif%}
             <td class="table_right">
 
                 {% if top %} {% for el in top %}

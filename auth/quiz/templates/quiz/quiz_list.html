@@ -6,13 +6,21 @@
             <td class="table_left">
                 <div class="menu_gl">
                     <ul class="menu">
+                        {% if user.is_students %}
+
                         <li><a class="cours_menu_a" href="#">Все тесты</a></li>
-                        <li><a href="#">Мои тесты</a></li>
+
+
+                        {%else%}
+
+
+                        <li><a class="cours_menu_a" href="#">Все тесты</a></li>
+
                         <li><a href="{% url 'add_test' %}">Добавить тест</a></li>
                         <li><a href="{% url 'add_question' %}">Добавить вопрос</a></li>
                     </ul>
                 </div>
-            </td>
+            </td> {%endif%}
             <td class="table_right">
 
                 <h2>{% trans "Тест" %}</h2>
