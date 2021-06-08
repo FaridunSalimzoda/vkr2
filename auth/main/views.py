@@ -36,11 +36,13 @@ def students(request):
 def my_view(request):
     if not request.user.is_authenticated():
         return render(request, 'myapp/error_403.html')
-
 class setting_user(UpdateView):
-    model = User_table
-    form_class = UserUpdateForm
-    template_name =  'main/setting_user.html'
+    model = user
+    template_name = 'main/setting_user.html'
+    form_class =UserUpdateForm
+
+# def setting_user(request, ):
+#     return render(request, 'main/setting_user.html')
 
 # def login_user(request):
 #     if request.method == 'POST':

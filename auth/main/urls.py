@@ -11,7 +11,7 @@ urlpatterns = [
     url(regex=r'^account', view=account, name='account'),
     url(regex=r'^login/$', view=login_user, name='login'),
     url(regex=r'^logout/$', view=logout_user, name='logout'),
-    url(regex=r'^settings/$', view=setting_user, name='setting'),
+    url(regex=r'^settings/$', view=setting_user.as_view(), name='setting'),
     url(regex=r'^error', view=my_view, name='error'),
     url(regex=r'^teacher/$', view=teacher, name='teacher'),
     url(regex=r'^students/$', view=students, name='students')
