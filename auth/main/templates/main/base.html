@@ -21,7 +21,21 @@
         </h2>
         <nav class="my-2 my-md-0 mr-md-3" style="display: flex;">
             <a class=" p-2 text-dark " href="{% url 'ho' %} ">Главная страница</a> {% if user.is_authenticated %}
-            <a class="p-2 text-dark " href="{% url 'kurs' %} ">Курсы</a>
+
+            <div class="dropdown ">
+                <a class="p-2 text-dark " href="{% url 'kurs' %} ">Курсы</a>
+                <div class="dropdown-content ">
+
+                    <li class="nav-item nav-mylik ">
+                        <a href="{% url 'quiz_index' %} " class="nav-link ">Тесты</a>
+                        <a href="{% url 'quiz_progress' %} " class="nav-link ">Прогресс</a>
+                        <ul class="navbar-nav ml-auto ">
+
+
+                    </li>
+
+                </div>
+            </div>
             <div class="dropdown ">
                 <a class="p-2 text-dark " href="{% url 'account' %} ">Личный кабинет</a>
                 <div class="dropdown-content ">

@@ -5,7 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+
+
+            </td>
+
+            <td class="table_righ">
+                <table class="tftable">
+                   <form method="post">
     {% csrf_token %}
     {{ form.title }}<br>
     {{ form.task }}<br>
@@ -13,4 +24,8 @@
     <span>{{ error }}</span>
     <button type="submit" class="btn btn-success">Добавить курс</button>
 </form>
+                </table>
+            </td>
+
+
 {% endblock %}

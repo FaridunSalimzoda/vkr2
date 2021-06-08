@@ -524,7 +524,7 @@ class Question(models.Model):
                                   blank=True,
                                   null = True)
 
-    category = models.ForeignKey(TopicTable, #TODO: И тут нужен TopicTable , но не мигрирует
+    category = models.ForeignKey(TopicTable,
                                  verbose_name=_("Тема"),
                                  blank=True,
                                  null=True, on_delete=models.CASCADE)

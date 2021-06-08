@@ -8,7 +8,7 @@ from django.urls import path
 
 
 urlpatterns = [           path('adt', views.add_test, name='add_test'),
-                          path('add', views.add_questions, name='add_answer'),
+                          path('add', views.add_questions, name='add_question'),
                         url(regex=r'^$', view=index, name='index'),
                        url(regex=r'^quizzes/$',
                            view=QuizListView.as_view(),

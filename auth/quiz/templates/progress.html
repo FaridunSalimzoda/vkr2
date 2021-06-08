@@ -4,21 +4,7 @@
     <tbody>
         <tr>
             <td class="table_left">
-                <div class="menu_gl">
-                    <ul class="menu">
-                        <ul class="navbar-nav rm-auto">
-                            {% if user.is_authenticated %}
-                            <li class="nav-tem" style="color:gray">
-                                <a href="{% url 'quiz_index' %}" class="nav-link">Тесты</a>
-                            </li>
-                            <li class="nav-tem" style="color:gray">
-                                <a href="{% url 'quiz_progress' %}" class="nav-link">Прогресс</a>
-                            </li>
-                            {% endif %}
 
-                        </ul>
-                    </ul>
-                </div>
             </td>
 
             <td class="table_righ">

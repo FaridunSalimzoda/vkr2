@@ -10,7 +10,7 @@ def cour(request):
     return render(request, 'cours/cours_home.html', {'ku': ku})
 
 def user_cours(request):
-    ku = CourseTable.objects.order_by('id')
+    ku = CourseTable.objects.order_by(user.name)#TODO: Как правильно?
     return render(request, 'cours/user_cours.html', {'ku': ku})
 
 def detail(request, pk):
@@ -24,8 +24,8 @@ def topic_dateil(request, pk, kk):
     ku = list(CourseTable.objects.filter(id=pk).values())
     return render(request, 'cours/topic.html', {'top': top[0], 'pk': pk, 'kk': kk})
 
-def my_cours(request):
-    ku = CourseTable.objects.order_by('teacher.id')
+def my_cours(request): #TODO: Как сделать тут?
+    ku = CourseTable.objects.order_by('user.name')
     return render(request, 'cours/mykurs.html', {'ku': ku})
 
 
