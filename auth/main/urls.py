@@ -3,7 +3,7 @@ from django.template.context_processors import static
 from django.urls import path, include
 from django.conf.urls import url
 from . import views
-from .views import index, login_user, logout_user, account, setting_user, my_view, teacher, students,register
+from .views import index, login_user, logout_user, account, setting_user, my_view, teacher, students,register, user_all
 
 
 urlpatterns = [
@@ -16,4 +16,5 @@ urlpatterns = [
     url(regex=r'^teacher/$', view=teacher, name='teacher'),
     url(regex=r'^students/$', view=students, name='students'),
     url(r'^register/$', views.register, name='register'),
+    url(regex=r'^user/$', view=user_all, name='user')
     ]

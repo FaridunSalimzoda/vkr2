@@ -33,6 +33,8 @@
 
                 </div>
             </div>
+            {%if user.is_admin%}
+            <a href="{% url 'user' %}" class="p-2 text-dark">Пользователи</a> {%endif%}
             <div class="dropdown ">
                 <a class="p-2 text-dark " href="{% url 'account' %} ">Личный кабинет</a>
                 <div class="dropdown-content ">

@@ -33,6 +33,9 @@ def teacher(request):
 def students(request):
 
     return render(request, 'main/students.html')
+def user_all(request):
+    u = user.objects.order_by('is_students')
+    return render(request, 'main/user.html', {'u':u})
 @login_required
 def my_view(request):
     if not request.user.is_authenticated():

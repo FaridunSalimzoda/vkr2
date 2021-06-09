@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %} {% block title %} Курсы {% endblock %} {% block content %}
+
+<table class="table">
+    <tbody>
+        <tr>
+            {% if user.is_students %}
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+                        <li><a class="cours_menu_a" href="{% url 'kurs' %}">Все курсы</a></li>
+                        <li><a href="{% url 'mycours' %}">Мои курсы</a></li>
+                    </ul>
+                </div>
+            </td>
+            {% else %}
+            <td class="table_left">
+                <div class="menu_gl">
+                    <ul class="menu">
+                        <li><a class="cours_menu_a" href="{% url 'kurs' %}">Все курсы</a></li>
+                        <li><a href="{% url 'mycours' %}">Мои курсы</a></li>
+                        <li><a href="{% url 'adk' %}">Добавить курс</a></li>
+                    </ul>
+                </div>
+            </td>
+            {% endif %} {% if u%} {% for el in u %}
+            <td class="table_righ">
+                <td class="p-2 text-dark">{{ u.name }} {{ u.last_name }}</td>
+                <td class="p-2 text-dark"><a class="btn btn-success" href="{% url 'datail' el.id %}">Перейти</a></td>
+            </td>
+            {%endfor%} {% else %}
+            <p>Вы не добавили курсов</p>
+            {%endif%} {% endblock %}
