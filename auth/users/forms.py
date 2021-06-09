@@ -36,6 +36,6 @@ class UserUpdateForm(ModelForm):
                 'class':'',
                 'placeholder': 'Введите пароль'
             }),
-            'photo': ImageField
+            # 'photo': ImageField
 
         }
