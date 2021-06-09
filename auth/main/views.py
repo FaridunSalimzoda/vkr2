@@ -31,10 +31,14 @@ def teacher(request):
     return render(request, 'main/teacher.html')
 
 def students(request):
-
-    return render(request, 'main/students.html')
+    # можно вывести только студентов:
+    u = user.objects.filter(is_students=True)
+    return render(request, 'main/students.html', {'u':u})
 def user_all(request):
-    u = user.objects.order_by('is_students')
+    # можно просто вывести всех:
+    # u = user.objects.all()
+    # можно отсортировать
+    u = user.objects.order_by('name')
     return render(request, 'main/user.html', {'u':u})
 @login_required
 def my_view(request):

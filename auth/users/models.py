@@ -49,6 +49,7 @@ class user(AbstractBaseUser, PermissionsMixin):
             verbose_name_plural = 'Пользователи'
 
     object = UserManager()
+    objects = models.Manager()
 
     USERNAME_FIELD  = 'email'
 

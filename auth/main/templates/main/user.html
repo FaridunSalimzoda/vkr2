@@ -24,7 +24,7 @@
             </td>
             {% endif %} {% if u%} {% for el in u %}
             <td class="table_righ">
-                <td class="p-2 text-dark">{{ u.name }} {{ u.last_name }}</td>
+                <td class="p-2 text-dark">{{ el.name }} {{ el.last_name }}</td>
                 <td class="p-2 text-dark"><a class="btn btn-success" href="{% url 'datail' el.id %}">Перейти</a></td>
             </td>
             {%endfor%} {% else %}
