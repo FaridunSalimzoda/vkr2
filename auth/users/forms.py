@@ -4,8 +4,8 @@ from .models import user
 from django.forms import  ModelForm, TextInput, PasswordInput, ImageField, CharField
 
 class UserRegisterForm(ModelForm):
-    password = CharField(label='Password', widget=PasswordInput)
-    password2 = CharField(label='Repeat password', widget=PasswordInput)
+    password = CharField(label='Пароль', widget=PasswordInput)
+    password2 = CharField(label='Повторите пароль', widget=PasswordInput)
     class Meta:
         model = user
         fields = ['email','name','last_name', 'patronymic']
@@ -24,7 +24,7 @@ class UserRegisterForm(ModelForm):
         def clean_password2(self):
             cd = self.cleaned_data
             if cd['password'] != cd['password2']:
-                raise ValidationError('Passwords don\'t match.')
+                raise ValidationError('Пароли не совпадают!')
             return cd['password2']
 class UserUpdateForm(ModelForm):
     class Meta:

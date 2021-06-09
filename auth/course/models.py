@@ -8,7 +8,7 @@ User_table = user
 class CourseTable(models.Model):
     title = models.CharField('Название курса', max_length=75)
     task = models.TextField('Описание курса', max_length=250)
-    teacher = models.ForeignKey(User_table, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(User_table, verbose_name='Преподаватель', on_delete=models.CASCADE)
 
 
     def get_users(self):

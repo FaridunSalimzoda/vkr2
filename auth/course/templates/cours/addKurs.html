@@ -1,10 +1,4 @@
-{% extends 'main/base.html' %}
-
-{% block title %}
-Добавить курс
-{% endblock %}
-
-{% block content %}
+{% extends 'main/base.html' %} {% block title %} Добавить курс {% endblock %} {% block content %}
 
 <table class="table">
     <tbody>
@@ -16,16 +10,13 @@
 
             <td class="table_righ">
                 <table class="tftable">
-                   <form method="post">
-    {% csrf_token %}
-    {{ form.title }}<br>
-    {{ form.task }}<br>
-    {{ form.teacher }}<br>
-    <span>{{ error }}</span>
-    <button type="submit" class="btn btn-success">Добавить курс</button>
-</form>
+                    <form method="post">
+                        {% csrf_token %} {{form.as_p}}
+                        <span>{{ error }}</span>
+                        <button type="submit" class="btn btn-success">Добавить курс</button>
+                    </form>
                 </table>
             </td>
 
 
-{% endblock %}
+            {% endblock %}
