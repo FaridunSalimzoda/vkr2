@@ -285,7 +285,7 @@ class Progress(models.Model):
         return Sitting.objects.filter(user=self.user, complete=True)
 
     def __str__(self):
-        return self.user.username + ' - '  + self.score
+        return self.user.name + ' ' + self.user.last_name + ' - '  + self.score
 
 
 class SittingManager(models.Manager):
