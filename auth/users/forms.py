@@ -30,12 +30,16 @@ class UserUpdateForm(ModelForm):
     class Meta:
         model = user
         fields = ['password', 'photo']
-
+        password = CharField(label='Пароль', widget=PasswordInput)
+        password2 = CharField(label='Повторите пароль', widget=PasswordInput)
         widgets = {
-            'password': PasswordInput(attrs={
-                'class':'',
-                'placeholder': 'Введите пароль'
-            }),
+
             # 'photo': ImageField
 
         }
+
+        def clean_password2(self):
+            cd = self.cleaned_data
+            if cd['password'] != cd['password2']:
+                raise ValidationError('Пароли не совпадают!')
+            return cd['password2']

@@ -1,1 +1,6 @@
-{% extends "main/base.html" %} {% block content %} {{ form.photo}} {% endblock %}
+{% extends "main/base.html" %} {% block content %}
+<form action="." method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <p><input type="submit" class="btn btn-primary" value="Сохранить"></p>
+</form> {% endblock %}

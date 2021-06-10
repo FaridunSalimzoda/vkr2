@@ -12,7 +12,8 @@
             <input type="password" class="form-control" placeholder="Введите пароль" name="password">
         </div>
         <button type="submit" class="btn btn-primary">Войти</button>
-        <a href="{% url 'register' %}">Еще не зарегистрированны?</a>
+        <a href="{% url 'register' %}">Еще не зарегистрированны?</a><br>
+        <span>{{error}}</span>
     </form>
 </div>
 

@@ -39,7 +39,9 @@
                     <tr>
                         <td class="p-2 text-dark">{{ el.title }}</td>
                         <td class="p-2 text-dark">{{ el.task }}</td>
-                        <td class="btn btn-success"><a href="{% url 'top_datail' pk el.id %}">Перейти</a></td>
+                        <td>
+                            <a class="btn btn-success" href="{% url 'top_datail' pk el.id %}">Перейти</a>
+                        </td>
                     </tr>
                 </table>
                 {%endfor%} {% else %}

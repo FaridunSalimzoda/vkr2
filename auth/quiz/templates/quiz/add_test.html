@@ -16,21 +16,8 @@
 
                 <form method="post">
                     {% csrf_token %}
-                    <p> Название теста : {{ form.title }}</p>
-                    <p>Описание теста: {{ form.description }} </p>
-                    <p>Курс: {{ form.category }}</p>
-                    <p>Файл: {{ form.figure }}</p>
-                    <p>Выводить вопросы разноброс: {{ form.random_order }} </p>
-                    <p>Максимально вопросов: {{ form.max_questions }} </p>
-                    <p>Выводить ответы в конце: {{ form.answers_at_end }}</p>
-                    <p>Экзамен: {{ form.exam_paper }}</p>
-                    <p>Ссылка на тест: {{ form.url }}</p>
-                    <p>Пользователю будет разрешена только одна попытка: {{ form.single_attempt }} </p>
-                    <p>Миниальный процентр прохождение теста: {{ form.pass_mark }} </p>
-                    <p>Текст при неправильном прохождении: {{ form.success_text }} </p>
-                    <p>Текст при правильном прохождении: {{ form.fail_text }} </p>
-                    <p>Проект: {{ form.draft }} </p>
-                    <p>Вопросы: {{form.questions}}</p>
+                   {{form.as_p}}
+                    {{form1.as_p}}
                     <button type="submit" class="btn btn-success">Добавить тест</button>
                     <span>{{ error }}</span>
                 </form>

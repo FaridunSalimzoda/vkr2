@@ -1,4 +1,5 @@
-{% extends 'main/base.html' %} {% block title %} Добавить тему {% endblock %} {% block content %}
+{% extends 'main/base.html' %} {% block title %} Добавить ответ {% endblock %} {% block content %}
+
 <table class="table">
     <tbody>
         <tr>
@@ -12,7 +13,7 @@
                     <form method="post">
                         {% csrf_token %} {{form.as_p}}
                         <span>{{ error }}</span>
-                        <button type="submit" class="btn btn-success">Добавить тему</button>
+                        <button type="submit" class="btn btn-success">Добавить ответ</button>
                     </form>
                 </table>
             </td>

@@ -3,7 +3,7 @@ from django.forms.widgets import RadioSelect
 from django.forms import ModelForm, TextInput, Textarea, Select, CharField, CheckboxInput, ImageField, PasswordInput, FileInput
 from .models import Quiz
 from quiz.models import Question
-from mcq.models import MCQQuestion
+from mcq.models import MCQQuestion, Answer
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.utils.translation import ugettext_lazy as _
@@ -34,8 +34,6 @@ class QuizForm(ModelForm):
                 'class': 'form_class',
 
             }),
-
-
             'random_order': CheckboxInput(attrs={
 
             }),
@@ -53,13 +51,14 @@ class QuizForm(ModelForm):
             'success_text': TextInput(attrs={'class': 'form_class'}),
             'fail_text': TextInput(attrs={'class': 'form_class'}),
             'draft': CheckboxInput(attrs={}),
-            'url': TextInput(attrs={})
+            'url': TextInput(attrs={}),
+
         }
 
     questions = forms.ModelMultipleChoiceField(
         queryset=Question.objects.all().select_subclasses(),
         required=False,
-        label=_("Questions"),
+        label=_("Вопросы"),
         widget=FilteredSelectMultiple(
             verbose_name=_("Вопросы"),
             is_stacked=False))
@@ -80,6 +79,14 @@ class QuizForm(ModelForm):
         self.save_m2m()
         return quiz
 
+class AnswerForm(ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['content', 'correct']
+        widgets = {
+            'content': Select(attrs={}),
+            'correct': CheckboxInput
+        }
 
 class QuestionsFormmy(ModelForm):
     class Meta:

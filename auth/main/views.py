@@ -34,16 +34,21 @@ def students(request):
     # можно вывести только студентов:
     u = user.objects.filter(is_students=True)
     return render(request, 'main/students.html', {'u':u})
+
 def user_all(request):
     # можно просто вывести всех:
     # u = user.objects.all()
     # можно отсортировать
     u = user.objects.order_by('name')
     return render(request, 'main/user.html', {'u':u})
+def user_detail(request, pk):
+    a = list(user.objects.filter(id=pk).values())
+    return  render(request, 'main/user_detail.html', {'a':a})
 @login_required
 def my_view(request):
     if not request.user.is_authenticated():
         return render(request, 'myapp/error_403.html')
+
 class setting_user(UpdateView):
     model = user
     template_name = 'main/setting_user.html'
@@ -68,6 +73,7 @@ class setting_user(UpdateView):
 #         return render(request, 'main/login.html', {})
 
 def login_user(request):
+    error = ''
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -81,7 +87,8 @@ def login_user(request):
             if user.is_students:
                 return redirect("students")
         else:
-            return render(request, "main/login.html")
+            error='Не правильный логин или пароль'
+            return render(request, "main/login.html", {'error':error})
     else:
      return render(request, 'main/login.html', {})
 

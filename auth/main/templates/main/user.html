@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %} {% block title %} Курсы {% endblock %} {% block content %}
+{% extends 'main/base.html' %} {% block title %} Все пользователи {% endblock %} {% block content %}
 
 <table class="table">
     <tbody>
@@ -24,8 +24,15 @@
             </td>
             {% endif %} {% if u%} {% for el in u %}
             <td class="table_righ">
-                <td class="p-2 text-dark">{{ el.name }} {{ el.last_name }}</td>
-                <td class="p-2 text-dark"><a class="btn btn-success" href="{% url 'datail' el.id %}">Перейти</a></td>
+                <table class="tftable">
+                    <tr>
+                        <td class="p-2 text-dark">{{ el.name }}</td>
+                        <td class="p-2 text-dark">{{ el.last_name }}</td>
+                        <td class="p-2 text-dark"><a class="btn btn-success" href="{% url 'user_detail' el.id %}">Перейти</a></td>
+                    </tr>
+                </table>
+
+
             </td>
             {%endfor%} {% else %}
             <p>Вы не добавили курсов</p>

@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %} {% block title %} {% if a%} {% for el in a %} {{el.name}} {{el.last_name}}{%endfor%}{%endif%} {% endblock %} {% block content %}
+<table class="table">
+    <tbody>
+        <tr>
+            <td class="table_left">
+
+
+            </td>
+            <td class="table_right">
+
+                {% if user.is_authenticated %} {% if a%}{% for el in a %}
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="table_left">
+                                <p> <img class="user_img" src="{{MEDIA.URL }} {{ user.photo.url }} " alt="аватар "></p>
+                            </td>
+                            <td class="table_right title_name__table">{{el.name}} {{el.last_name}} {{el.students_groups}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {%endfor%} {%endif%} {% endif %} {% endblock %}
+            </td>
+        </tr>
+    </tbody>
+</table>

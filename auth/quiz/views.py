@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
-from .forms import QuestionForm, QuizForm, QuestionsFormmy, RegistrForm
+from .forms import QuestionForm, QuizForm, QuestionsFormmy, AnswerForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -251,7 +251,7 @@ def add_test(request):
         else:
             error = 'error'
     form = QuizForm()
-    form1 = QuestionsFormmy()
+    form1 = AnswerForm()
     data = {
         'form': form,
         'error': error,
@@ -260,21 +260,22 @@ def add_test(request):
     return render(request, 'quiz/add_test.html', data)
 
 
-def add_user(request):
-    error = ' '
+def add_answer(request):
+    error = ''
     if request.method == 'POST':
-        form = RegistrForm(request.POST)
+        form = AnswerForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('quiz_index')
         else:
             error = 'error'
-        form = RegistrForm()
-        data = {
+            return redirect('quiz_index')
+        form = AnswerForm()
+        date = {
             'form': form,
-            'error': error
+            'error': error,
         }
-        return render(request, 'quiz/reg.html', data)
+        return render(request,'quiz/addanswer.html', date)
 
 
 def add_questions(request):

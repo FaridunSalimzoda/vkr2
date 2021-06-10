@@ -29,7 +29,7 @@ class CourseTable(models.Model):
 class TopicTable(models.Model):
     title = models.CharField('Название темы', max_length=75)
     task = models.TextField('Описание темы', max_length=250)
-    id_course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)
+    id_course = models.ForeignKey(CourseTable, verbose_name='Курс', on_delete=models.CASCADE)
     def __str__(self):
         return f'Тема {self.title} курса {self.id_course}'
 

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake, index
+    QuizMarkingDetail, QuizDetailView, QuizTake, index, add_answer
 from  . import views
 from django.urls import path
 
@@ -10,6 +10,7 @@ from django.urls import path
 urlpatterns = [           path('adt', views.add_test, name='add_test'),
                           path('add', views.add_questions, name='add_question'),
                         url(regex=r'^$', view=index, name='index'),
+                          url(regex=r'^add_answer', view=add_answer, name='add_answer'),
                        url(regex=r'^quizzes/$',
                            view=QuizListView.as_view(),
                            name='quiz_index'),
