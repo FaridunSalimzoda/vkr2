@@ -63,8 +63,6 @@ class QuizForm(ModelForm):
             verbose_name=_("Вопросы"),
             is_stacked=False))
 
-    filter_horizontal = questions
-
     def __init__(self, *args, **kwargs):
         super(QuizForm, self).__init__(*args, **kwargs)
         if self.instance.pk:
